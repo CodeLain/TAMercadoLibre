@@ -82,10 +82,11 @@ const itemsList=[
     }
   ]
 
-document.addEventListener('DOMContentLoaded', () => {
+let htmlGenerator= (arrayItems) =>{
+    
     let result="";
     let conteiner1=document.getElementById("container1");
-itemsList.forEach(item => {
+arrayItems.forEach(item => {
     
     let variable=`<div class="card">
     <div class="card-image">
@@ -113,7 +114,36 @@ itemsList.forEach(item => {
 result+=variable;
 });
 conteiner1.innerHTML=result;
+}
 
+document.addEventListener('DOMContentLoaded', () => {
 
+    htmlGenerator(itemsList);
 });
+
+let filterByName =() =>{
+    const inputText=document.getElementById("input1").value.toLowerCase();
+    if (!inputText){
+        htmlGenerator(itemsList);
+    }
+    else {
+        
+        const filteredProducts=itemsList.filter((item)=>{
+            return item.name.toLowerCase().includes(inputText);
+        });
+
+        if (filteredProducts.length > 0) {
+            htmlGenerator(filteredProducts);
+        } else {
+            alert("No se encontraron productos con esa descripcion.");
+        }
+        
+    }
+
+
+
+}    
+
+const button=document.getElementById("buscar");
+button.addEventListener("click",filterByName);
 
