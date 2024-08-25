@@ -1,98 +1,95 @@
-
-
-
-const itemsList=[
+const itemsList = [
     {
-      "name": "Wireless Mouse",
-      "description": "Ergonomic wireless mouse with adjustable DPI.",
-      "price": 29.99,
-      "image": "https://via.placeholder.com/150?text=Wireless+Mouse"
+        "name": "Wireless Mouse",
+        "description": "Ergonomic wireless mouse with adjustable DPI.",
+        "price": 29.99,
+        "image": "https://via.placeholder.com/150?text=Wireless+Mouse"
     },
     {
-      "name": "Mechanical Keyboard",
-      "description": "RGB backlit mechanical keyboard with Cherry MX switches.",
-      "price": 89.99,
-      "image": "https://via.placeholder.com/150?text=Mechanical+Keyboard"
+        "name": "Mechanical Keyboard",
+        "description": "RGB backlit mechanical keyboard with Cherry MX switches.",
+        "price": 89.99,
+        "image": "https://via.placeholder.com/150?text=Mechanical+Keyboard"
     },
     {
-      "name": "Gaming Headset",
-      "description": "Surround sound gaming headset with noise-cancelling microphone.",
-      "price": 59.99,
-      "image": "https://via.placeholder.com/150?text=Gaming+Headset"
+        "name": "Gaming Headset",
+        "description": "Surround sound gaming headset with noise-cancelling microphone.",
+        "price": 59.99,
+        "image": "https://via.placeholder.com/150?text=Gaming+Headset"
     },
     {
-      "name": "27-inch Monitor",
-      "description": "4K UHD monitor with IPS display and 144Hz refresh rate.",
-      "price": 329.99,
-      "image": "https://via.placeholder.com/150?text=27-inch+Monitor"
+        "name": "27-inch Monitor",
+        "description": "4K UHD monitor with IPS display and 144Hz refresh rate.",
+        "price": 329.99,
+        "image": "https://via.placeholder.com/150?text=27-inch+Monitor"
     },
     {
-      "name": "Laptop Stand",
-      "description": "Adjustable aluminum laptop stand for ergonomic work setup.",
-      "price": 39.99,
-      "image": "https://via.placeholder.com/150?text=Laptop+Stand"
+        "name": "Laptop Stand",
+        "description": "Adjustable aluminum laptop stand for ergonomic work setup.",
+        "price": 39.99,
+        "image": "https://via.placeholder.com/150?text=Laptop+Stand"
     },
     {
-      "name": "USB-C Hub",
-      "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
-      "price": 24.99,
-      "image": "https://via.placeholder.com/150?text=USB-C+Hub"
+        "name": "USB-C Hub",
+        "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
+        "price": 24.99,
+        "image": "https://via.placeholder.com/150?text=USB-C+Hub"
     },
     {
-      "name": "External SSD",
-      "description": "Portable external SSD with 1TB storage and USB 3.1 interface.",
-      "price": 129.99,
-      "image": "https://via.placeholder.com/150?text=External+SSD"
+        "name": "External SSD",
+        "description": "Portable external SSD with 1TB storage and USB 3.1 interface.",
+        "price": 129.99,
+        "image": "https://via.placeholder.com/150?text=External+SSD"
     },
     {
-      "name": "Smartphone Stand",
-      "description": "Adjustable smartphone stand with 360-degree rotation.",
-      "price": 19.99,
-      "image": "https://via.placeholder.com/150?text=Smartphone+Stand"
+        "name": "Smartphone Stand",
+        "description": "Adjustable smartphone stand with 360-degree rotation.",
+        "price": 19.99,
+        "image": "https://via.placeholder.com/150?text=Smartphone+Stand"
     },
     {
-      "name": "Bluetooth Speaker",
-      "description": "Portable Bluetooth speaker with 10-hour battery life.",
-      "price": 49.99,
-      "image": "https://via.placeholder.com/150?text=Bluetooth+Speaker"
+        "name": "Bluetooth Speaker",
+        "description": "Portable Bluetooth speaker with 10-hour battery life.",
+        "price": 49.99,
+        "image": "https://via.placeholder.com/150?text=Bluetooth+Speaker"
     },
     {
-      "name": "Webcam",
-      "description": "1080p HD webcam with built-in microphone and privacy cover.",
-      "price": 34.99,
-      "image": "https://via.placeholder.com/150?text=Webcam"
+        "name": "Webcam",
+        "description": "1080p HD webcam with built-in microphone and privacy cover.",
+        "price": 34.99,
+        "image": "https://via.placeholder.com/150?text=Webcam"
     },
     {
-      "name": "Wireless Charger",
-      "description": "Fast wireless charger with Qi compatibility.",
-      "price": 25.99,
-      "image": "https://via.placeholder.com/150?text=Wireless+Charger"
+        "name": "Wireless Charger",
+        "description": "Fast wireless charger with Qi compatibility.",
+        "price": 25.99,
+        "image": "https://via.placeholder.com/150?text=Wireless+Charger"
     },
     {
-      "name": "Noise-Cancelling Headphones",
-      "description": "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
-      "price": 199.99,
-      "image": "https://via.placeholder.com/150?text=Noise-Cancelling+Headphones"
+        "name": "Noise-Cancelling Headphones",
+        "description": "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
+        "price": 199.99,
+        "image": "https://via.placeholder.com/150?text=Noise-Cancelling+Headphones"
     },
     {
-      "name": "Smartwatch",
-      "description": "Smartwatch with heart rate monitor and GPS.",
-      "price": 149.99,
-      "image": "https://via.placeholder.com/150?text=Smartwatch"
+        "name": "Smartwatch",
+        "description": "Smartwatch with heart rate monitor and GPS.",
+        "price": 149.99,
+        "image": "https://via.placeholder.com/150?text=Smartwatch"
     }
-  ]
+]
 
-let htmlGenerator= (arrayItems) =>{
-    
-    let result="";
-    let conteiner1=document.getElementById("container1");
-arrayItems.forEach(item => {
-    
-    let variable=`<div class="card">
+let htmlGenerator = (arrayItems) => {
+
+    let result = "";
+    let container1 = document.getElementById("container1");
+    arrayItems.forEach(item => {
+
+        let variable = `
+<div class="card column is-full-mobile is-one-quarter-desktop">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
-
           src="${item.image}"
           alt="Placeholder image"
         />
@@ -110,40 +107,76 @@ arrayItems.forEach(item => {
     </div>
   </div>
 </div>
-</div> `   
-result+=variable;
-});
-conteiner1.innerHTML=result;
+</div> `
+        result += variable;
+    });
+    container1.innerHTML = result;
+}
+
+
+const noProductsFound = () => {
+    const noProducts = document.getElementById("noProducts");
+    const products = document.getElementById("products");
+
+    products.classList.add("hidden");
+    noProducts.classList.add("is-flex");
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
     htmlGenerator(itemsList);
 });
 
-let filterByName =() =>{
-    const inputText=document.getElementById("input1").value.toLowerCase();
-    if (!inputText){
+let filterByName = (text) => {
+    const products = document.getElementById("products");
+    products.classList.remove("hidden");
+    const noProducts = document.getElementById("noProducts");
+    noProducts.classList.remove("is-flex");
+
+    const inputText = text.toLowerCase();
+    if (!inputText) {
         htmlGenerator(itemsList);
-    }
-    else {
-        
-        const filteredProducts=itemsList.filter((item)=>{
+    } else {
+
+        const filteredProducts = itemsList.filter((item) => {
             return item.name.toLowerCase().includes(inputText);
         });
 
         if (filteredProducts.length > 0) {
             htmlGenerator(filteredProducts);
         } else {
-            alert("No se encontraron productos con esa descripcion.");
+            noProductsFound();
         }
-        
+
     }
+};
 
+const orderByPrice = (order) => {
+    const newItemList = [...itemsList]
+    switch (order) {
+        case "default":
+            htmlGenerator(itemsList);
+            break;
 
+        case "lowPrice":
+            newItemList.sort((a, b) => a.price - b.price);
+            htmlGenerator(newItemList);
+            break;
 
-}    
+        case "highPrice":
+            newItemList.sort((a, b) => b.price - a.price);
+            htmlGenerator(newItemList);
+            break;
+    }
+};
 
-const button=document.getElementById("buscar");
-button.addEventListener("click",filterByName);
+const orderProducts = document.getElementById("orderProducts");
+const inputText = document.getElementById("input1");
+
+inputText.addEventListener("input", () => {
+    filterByName(inputText.value);
+});
+
+orderProducts.addEventListener("change", () => {
+    orderByPrice(orderProducts.value);
+});
 

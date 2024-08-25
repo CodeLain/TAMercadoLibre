@@ -1,65 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  </head>
-  <body>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<section class="section" id="searchBar">
     <div class="columns">
         <div class="column is-four-fifths">
             <input id="input1"
-  class="is-four-fifths input is-normal "
-  type="text"
-  placeholder="Normal input"
-/>
-
-        </div>
-        <div class="column"><button id="buscar" class="button">Buscar</button></div>
-      </div>
-    
-
-
-
-<div class="fixed-grid has-4-cols">
-    <div id="container1"class="grid">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img
-          src="https://bulma.io/assets/images/placeholders/1280x960.png"
-          alt="Placeholder image"
-        />
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img
-              src="https://bulma.io/assets/images/placeholders/96x96.png"
-              alt="Placeholder image"
+                   class="is-four-fifths input is-normal "
+                   type="text"
+                   placeholder="Buscar productos"
             />
-          </figure>
         </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
+        <div class="column">
+            <div class="select">
+                <select id="orderProducts">
+                    <option value="default">Default: orden original de los objetos</option>
+                    <option value="lowPrice">Precio: Menor a mayor</option>
+                    <option value="highPrice">Precio: Mayor a menor</option>
+                </select>
+            </div>
         </div>
-      </div>
-  
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
     </div>
-  </div>
-</div>
-</div>
-  <script src="mercado.js"></script>
-  </body>
+</section>
+
+<section class="section" id="products">
+    <div class="container">
+        <div class="columns is-multiline" id="container1">
+        </div>
+    </div>
+</section>
+
+<section id="noProducts"
+         class="section is-flex-direction-column is-justify-content-center is-align-items-center is-fullheight hidden">
+    <h1 class="title">No se encontraron resultados.</h1>
+</section>
+
+<script src="mercado.js"></script>
+</body>
 </html>
