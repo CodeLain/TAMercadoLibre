@@ -1,6 +1,3 @@
-
-
-
 const itemsList=[
     {
       "name": "Wireless Mouse",
