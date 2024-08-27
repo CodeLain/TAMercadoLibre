@@ -14,7 +14,7 @@
 <body>
 <section class="section" id="searchBar">
     <div class="columns">
-        <div class="column is-four-fifths">
+        <div class="column is-three-fifths">
             <input id="input1"
                    class="is-four-fifths input is-normal "
                    type="text"
@@ -30,6 +30,11 @@
                 </select>
             </div>
         </div>
+        <div class="column">
+            <button class="js-modal-trigger button" data-target="modal-js-example">
+                Open JS example modal
+            </button>
+        </div>
     </div>
 </section>
 
@@ -39,6 +44,105 @@
         </div>
     </div>
 </section>
+
+<div id="modal-js-example2" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Nombre:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="name" class="input" type="text" placeholder="Recipient email"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Descripcion:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="description" class="input" type="text" placeholder="Recipient email"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Imagen:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="image" class="input" type="text" placeholder="Recipient email"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Precio:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="price" class="input" type="number" placeholder="Recipient email"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Categoria:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input id="category" class="input" type="text" placeholder="Recipient email"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <div class="buttons">
+                <button id="save" class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>
+    <div id="1" class="card column is-full-mobile is-one-quarter-desktop">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img src="https://via.placeholder.com/150?text=Mechanical+Keyboard" alt="Placeholder image">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p id="ModalTitle" class="title is-4">Mechanical Keyboard</p>
+        </div>
+      </div>
+      <div id="ModalDescription" class="content">
+        RGB backlit mechanical keyboard with Cherry MX switches. 89.99
+      </div>
+    </div>
+  </div>
+</div>
 
 <section id="noProducts"
          class="section is-flex-direction-column is-justify-content-center is-align-items-center is-fullheight hidden">
