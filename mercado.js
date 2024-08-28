@@ -184,6 +184,47 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBody(product.id);
         });
     })
+
+    const draggables = document.querySelectorAll('.draggable');
+const cart = document.getElementById('cart');
+console.log(draggables);
+
+draggables.forEach(draggable => {
+    console.log(draggable);
+    draggable.addEventListener('dragstart', () => {
+        draggable.classList.add('is-dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+        draggable.classList.remove('is-dragging');
+    });
+});
+
+cart.addEventListener('dragover', e => {
+    e.preventDefault();
+    cart.classList.add('drag-over');
+});
+
+cart.addEventListener('dragleave', () => {
+    cart.classList.remove('drag-over');
+});
+
+cart.addEventListener('drop', e => {
+    console.log("DRAG");
+    e.preventDefault();
+    cart.classList.remove('drag-over');
+
+    const draggable = document.querySelector('.is-dragging');
+    const itemName = draggable.getAttribute('data-item');
+    const itemElement = document.createElement('div');
+    itemElement.className = 'card';
+    itemElement.innerHTML = `
+                <div class="card-content">
+                    <p class="title">${itemName}</p>
+                </div>
+            `;
+    cart.appendChild(itemElement);
+});
 });
 
 let filterByName = (text) => {
@@ -265,46 +306,5 @@ orderProducts.addEventListener("change", () => {
 });
 
 save.addEventListener("click", createProduct);
-
-const draggables = document.querySelectorAll('.draggable');
-const cart = document.getElementById('cart');
-console.log(draggables);
-
-draggables.forEach(draggable => {
-    console.log(draggable);
-    draggable.addEventListener('dragstart', () => {
-        draggable.classList.add('is-dragging');
-    });
-
-    draggable.addEventListener('dragend', () => {
-        draggable.classList.remove('is-dragging');
-    });
-});
-
-cart.addEventListener('dragover', e => {
-    e.preventDefault();
-    cart.classList.add('drag-over');
-});
-
-cart.addEventListener('dragleave', () => {
-    cart.classList.remove('drag-over');
-});
-
-cart.addEventListener('drop', e => {
-    console.log("DRAG");
-    e.preventDefault();
-    cart.classList.remove('drag-over');
-
-    const draggable = document.querySelector('.is-dragging');
-    const itemName = draggable.getAttribute('data-item');
-    const itemElement = document.createElement('div');
-    itemElement.className = 'card';
-    itemElement.innerHTML = `
-                <div class="card-content">
-                    <p class="title">${itemName}</p>
-                </div>
-            `;
-    cart.appendChild(itemElement);
-});
 
 
