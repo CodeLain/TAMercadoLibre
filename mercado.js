@@ -99,7 +99,7 @@ let htmlGenerator = (arrayItems) => {
     arrayItems.forEach((item, index) => {
 
         let variable = `
-<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop">
+<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop draggable" draggable="true" data-item="test">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
@@ -136,8 +136,8 @@ const noProductsFound = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    arrayState = itemsList;
-    htmlGenerator(arrayState);
+    htmlGenerator(itemsList);
+
     // Functions to open and close a modal
     function openModal($el) {
         $el.classList.add('is-active');
@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
-let arrayState = [];
 let filterByName = (text) => {
     const products = document.getElementById("products");
     products.classList.remove("hidden");
@@ -195,35 +194,32 @@ let filterByName = (text) => {
 
     const inputText = text.toLowerCase();
     if (!inputText) {
-        arrayState = itemsList;
+        htmlGenerator(itemsList);
     } else {
         const filteredProducts = itemsList.filter((item) => {
             return item.name.toLowerCase().includes(inputText);
         });
         if (filteredProducts.length > 0) {
-            arrayState = filteredProducts;
+            htmlGenerator(filteredProducts);
         } else {
-            arrayState = [];
+            noProductsFound();
         }
     }
 };
 
 
 const orderByPrice = (order) => {
+    let auxList = [...itemsList];
     switch (order) {
-        case "default":
-            arrayState = itemsList;
-            break;
-
         case "lowPrice":
-            arrayState.sort((a, b) => a.price - b.price);
-            console.log(arrayState);
+            auxList.sort((a, b) => a.price - b.price);
             break;
 
         case "highPrice":
-            arrayState.sort((a, b) => b.price - a.price);
+            auxList.sort((a, b) => b.price - a.price);
             break;
     }
+    htmlGenerator(auxList);
 };
 
 const createProduct = () => {
@@ -261,9 +257,7 @@ const inputText = document.getElementById("input1");
 const save = document.getElementById("save");
 
 inputText.addEventListener("input", () => {
-    orderByPrice(orderProducts.value);
     filterByName(inputText.value);
-    htmlGenerator(arrayState);
 });
 
 orderProducts.addEventListener("change", () => {
@@ -271,5 +265,46 @@ orderProducts.addEventListener("change", () => {
 });
 
 save.addEventListener("click", createProduct);
+
+const draggables = document.querySelectorAll('.draggable');
+const cart = document.getElementById('cart');
+console.log(draggables);
+
+draggables.forEach(draggable => {
+    console.log(draggable);
+    draggable.addEventListener('dragstart', () => {
+        draggable.classList.add('is-dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+        draggable.classList.remove('is-dragging');
+    });
+});
+
+cart.addEventListener('dragover', e => {
+    e.preventDefault();
+    cart.classList.add('drag-over');
+});
+
+cart.addEventListener('dragleave', () => {
+    cart.classList.remove('drag-over');
+});
+
+cart.addEventListener('drop', e => {
+    console.log("DRAG");
+    e.preventDefault();
+    cart.classList.remove('drag-over');
+
+    const draggable = document.querySelector('.is-dragging');
+    const itemName = draggable.getAttribute('data-item');
+    const itemElement = document.createElement('div');
+    itemElement.className = 'card';
+    itemElement.innerHTML = `
+                <div class="card-content">
+                    <p class="title">${itemName}</p>
+                </div>
+            `;
+    cart.appendChild(itemElement);
+});
 
 
