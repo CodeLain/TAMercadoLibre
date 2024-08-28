@@ -136,8 +136,8 @@ const noProductsFound = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    htmlGenerator(itemsList);
-
+    arrayState = itemsList;
+    htmlGenerator(arrayState);
     // Functions to open and close a modal
     function openModal($el) {
         $el.classList.add('is-active');
@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
+let arrayState = [];
 let filterByName = (text) => {
     const products = document.getElementById("products");
     products.classList.remove("hidden");
@@ -194,37 +195,33 @@ let filterByName = (text) => {
 
     const inputText = text.toLowerCase();
     if (!inputText) {
-        htmlGenerator(itemsList);
+        arrayState = itemsList;
     } else {
-
         const filteredProducts = itemsList.filter((item) => {
             return item.name.toLowerCase().includes(inputText);
         });
-
         if (filteredProducts.length > 0) {
-            htmlGenerator(filteredProducts);
+            arrayState = filteredProducts;
         } else {
-            noProductsFound();
+            arrayState = [];
         }
-
     }
 };
 
+
 const orderByPrice = (order) => {
-    const newItemList = [...itemsList]
     switch (order) {
         case "default":
-            htmlGenerator(itemsList);
+            arrayState = itemsList;
             break;
 
         case "lowPrice":
-            newItemList.sort((a, b) => a.price - b.price);
-            htmlGenerator(newItemList);
+            arrayState.sort((a, b) => a.price - b.price);
+            console.log(arrayState);
             break;
 
         case "highPrice":
-            newItemList.sort((a, b) => b.price - a.price);
-            htmlGenerator(newItemList);
+            arrayState.sort((a, b) => b.price - a.price);
             break;
     }
 };
@@ -264,7 +261,9 @@ const inputText = document.getElementById("input1");
 const save = document.getElementById("save");
 
 inputText.addEventListener("input", () => {
+    orderByPrice(orderProducts.value);
     filterByName(inputText.value);
+    htmlGenerator(arrayState);
 });
 
 orderProducts.addEventListener("change", () => {
