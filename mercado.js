@@ -287,9 +287,11 @@ const modalBody = (productId) => {
     const item = itemsList.find(item => item.id === productId);
     const modalTitle = document.getElementById("ModalTitle");
     const modalDescription = document.getElementById("ModalDescription");
+    const modalImage = document.getElementById("modalImage");
 
     modalTitle.innerHTML = item.name;
     modalDescription.innerHTML = item.description + " " + item.price;
+    modalImage.src = item.image; 
     document.getElementById("modal-js-example").classList.add('is-active');
 }
 
