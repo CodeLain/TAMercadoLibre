@@ -99,7 +99,7 @@ let htmlGenerator = (arrayItems) => {
     arrayItems.forEach((item, index) => {
 
         let variable = `
-<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop">
+<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop draggable" draggable="true" data-item="test">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
@@ -184,6 +184,47 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBody(product.id);
         });
     })
+
+    const draggables = document.querySelectorAll('.draggable');
+const cart = document.getElementById('cart');
+console.log(draggables);
+
+draggables.forEach(draggable => {
+    console.log(draggable);
+    draggable.addEventListener('dragstart', () => {
+        draggable.classList.add('is-dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+        draggable.classList.remove('is-dragging');
+    });
+});
+
+cart.addEventListener('dragover', e => {
+    e.preventDefault();
+    cart.classList.add('drag-over');
+});
+
+cart.addEventListener('dragleave', () => {
+    cart.classList.remove('drag-over');
+});
+
+cart.addEventListener('drop', e => {
+    console.log("DRAG");
+    e.preventDefault();
+    cart.classList.remove('drag-over');
+
+    const draggable = document.querySelector('.is-dragging');
+    const itemName = draggable.getAttribute('data-item');
+    const itemElement = document.createElement('div');
+    itemElement.className = 'card';
+    itemElement.innerHTML = `
+                <div class="card-content">
+                    <p class="title">${itemName}</p>
+                </div>
+            `;
+    cart.appendChild(itemElement);
+});
 });
 
 let filterByName = (text) => {
@@ -196,37 +237,30 @@ let filterByName = (text) => {
     if (!inputText) {
         htmlGenerator(itemsList);
     } else {
-
         const filteredProducts = itemsList.filter((item) => {
             return item.name.toLowerCase().includes(inputText);
         });
-
         if (filteredProducts.length > 0) {
             htmlGenerator(filteredProducts);
         } else {
             noProductsFound();
         }
-
     }
 };
 
-const orderByPrice = (order) => {
-    const newItemList = [...itemsList]
-    switch (order) {
-        case "default":
-            htmlGenerator(itemsList);
-            break;
 
+const orderByPrice = (order) => {
+    let auxList = [...itemsList];
+    switch (order) {
         case "lowPrice":
-            newItemList.sort((a, b) => a.price - b.price);
-            htmlGenerator(newItemList);
+            auxList.sort((a, b) => a.price - b.price);
             break;
 
         case "highPrice":
-            newItemList.sort((a, b) => b.price - a.price);
-            htmlGenerator(newItemList);
+            auxList.sort((a, b) => b.price - a.price);
             break;
     }
+    htmlGenerator(auxList);
 };
 
 const createProduct = () => {
@@ -272,5 +306,3 @@ orderProducts.addEventListener("change", () => {
 });
 
 save.addEventListener("click", createProduct);
-
-
