@@ -186,45 +186,45 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     const draggables = document.querySelectorAll('.draggable');
-const cart = document.getElementById('cart');
-console.log(draggables);
+    const cart = document.getElementById('cart');
+    console.log(draggables);
 
-draggables.forEach(draggable => {
-    console.log(draggable);
-    draggable.addEventListener('dragstart', () => {
-        draggable.classList.add('is-dragging');
+    draggables.forEach(draggable => {
+        console.log(draggable);
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('is-dragging');
+        });
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('is-dragging');
+        });
     });
 
-    draggable.addEventListener('dragend', () => {
-        draggable.classList.remove('is-dragging');
+    cart.addEventListener('dragover', e => {
+        e.preventDefault();
+        cart.classList.add('drag-over');
     });
-});
 
-cart.addEventListener('dragover', e => {
-    e.preventDefault();
-    cart.classList.add('drag-over');
-});
+    cart.addEventListener('dragleave', () => {
+        cart.classList.remove('drag-over');
+    });
 
-cart.addEventListener('dragleave', () => {
-    cart.classList.remove('drag-over');
-});
+    cart.addEventListener('drop', e => {
+        console.log("DRAG");
+        e.preventDefault();
+        cart.classList.remove('drag-over');
 
-cart.addEventListener('drop', e => {
-    console.log("DRAG");
-    e.preventDefault();
-    cart.classList.remove('drag-over');
-
-    const draggable = document.querySelector('.is-dragging');
-    const itemName = draggable.getAttribute('data-item');
-    const itemElement = document.createElement('div');
-    itemElement.className = 'card';
-    itemElement.innerHTML = `
+        const draggable = document.querySelector('.is-dragging');
+        const itemName = draggable.getAttribute('data-item');
+        const itemElement = document.createElement('div');
+        itemElement.className = 'card';
+        itemElement.innerHTML = `
                 <div class="card-content">
                     <p class="title">${itemName}</p>
                 </div>
             `;
-    cart.appendChild(itemElement);
-});
+        cart.appendChild(itemElement);
+    });
 });
 
 let filterByName = (text) => {
@@ -271,6 +271,7 @@ const createProduct = () => {
     let category = document.getElementById("category").value;
 
     let newProduct = {
+        id: itemsList.length + 1,
         name: name,
         description: description,
         image: image,
@@ -280,6 +281,13 @@ const createProduct = () => {
     itemsList.push(newProduct);
     htmlGenerator(itemsList);
 
+    document.getElementById("name").value = '';
+    document.getElementById("description").value = '';
+    document.getElementById("image").value = '';
+    document.getElementById("price").value = '';
+    document.getElementById("category").value = '';
+
+    closeModal(document.getElementById("modal-create-product"));
 }
 
 const modalBody = (productId) => {
@@ -291,7 +299,7 @@ const modalBody = (productId) => {
 
     modalTitle.innerHTML = item.name;
     modalDescription.innerHTML = item.description + " " + item.price;
-    modalImage.src = item.image; 
+    modalImage.src = item.image;
     document.getElementById("modal-js-example").classList.add('is-active');
 }
 
