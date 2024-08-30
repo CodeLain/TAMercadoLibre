@@ -292,7 +292,7 @@ const createProduct = () => {
 
 const modalBody = (productId) => {
     console.log(productId);
-    const item = itemsList.find(item => item.id === productId);
+    const item = itemsList.find(item => item.id === parseInt(productId));
     const modalTitle = document.getElementById("ModalTitle");
     const modalDescription = document.getElementById("ModalDescription");
     const modalImage = document.getElementById("modalImage");
