@@ -299,7 +299,7 @@ const createProduct = () => {
     document.getElementById("description").value = '';
     document.getElementById("image").value = '';
     document.getElementById("price").value = '';
-    document.getElementById("category").value = '';
+    document.getElementById("category").value = 'electrónica';
 
     closeModal(document.getElementById("modal-create-product"));
 }

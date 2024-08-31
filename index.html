@@ -31,7 +31,7 @@
                 <div class="column">
                     <div class="select">
                         <select id="categorySelect">
-                            <option value="todo">Todo</option>
+                            <option value="todo">Mostrar todo</option>
                             <option value="electrónica">Electrónica</option>
                             <option value="accesorios">Accesorios</option>
                             <option value="almacenamiento">Almacenamiento</option>
@@ -128,10 +128,17 @@
                     <div class="field-body">
                         <div class="field">
                             <p class="control">
-                                <input id="category" class="input" type="text" placeholder="Product category" />
+                                <div class="select">
+                                    <select id="category">
+                                        <option value="electrónica">Electrónica</option>
+                                        <option value="accesorios">Accesorios</option>
+                                        <option value="almacenamiento">Almacenamiento</option>
+                                        <option value="audio">Audio</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                </div>
                             </p>
                         </div>
-                    </div>
                 </div>
             </section>
             <footer class="modal-card-foot">
