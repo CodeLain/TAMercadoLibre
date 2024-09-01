@@ -112,7 +112,7 @@ let htmlGenerator = (arrayItems) => {
     arrayItems.forEach((item, index) => {
 
         let variable = `
-<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop draggable" draggable="true" data-item="test">
+<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop draggable alignProduct" draggable="true" data-name="${item.name}" data-price="${item.price}">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
@@ -137,34 +137,6 @@ let htmlGenerator = (arrayItems) => {
         result += variable;
     });
     container1.innerHTML = result;
-}
-
-
-const noProductsFound = () => {
-    const noProducts = document.getElementById("noProducts");
-    const products = document.getElementById("products");
-
-    products.classList.add("hidden");
-    noProducts.classList.add("is-flex");
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    htmlGenerator(itemsList);
-
-    // Functions to open and close a modal
-    function openModal($el) {
-        $el.classList.add('is-active');
-    }
-
-    function closeModal($el) {
-        $el.classList.remove('is-active');
-    }
-
-    function closeAllModals() {
-        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-            closeModal($modal);
-        });
-    }
 
     // Add a click event on buttons to open a specific modal
     (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
@@ -196,14 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(product.id).addEventListener("click", () => {
             modalBody(product.id);
         });
-    })
+    });
 
     const draggables = document.querySelectorAll('.draggable');
-    const cart = document.getElementById('cart');
-    console.log(draggables);
 
     draggables.forEach(draggable => {
-        console.log(draggable);
         draggable.addEventListener('dragstart', () => {
             draggable.classList.add('is-dragging');
         });
@@ -212,6 +181,40 @@ document.addEventListener('DOMContentLoaded', () => {
             draggable.classList.remove('is-dragging');
         });
     });
+
+
+}
+
+
+// MODAL FUNCTIONS
+function openModal($el) {
+    $el.classList.add('is-active');
+}
+
+function closeModal($el) {
+    $el.classList.remove('is-active');
+}
+
+function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+        closeModal($modal);
+    });
+}
+
+
+const noProductsFound = () => {
+    const noProducts = document.getElementById("noProducts");
+    const products = document.getElementById("products");
+
+    products.classList.add("hidden");
+    noProducts.classList.add("is-flex");
+}
+
+//EJECUTA LUEGO DE CARGADO EL HTML, ASEGURA PODER HACER document.[funcionParaObtenerElemento/s] dado que se agregan elementos
+document.addEventListener('DOMContentLoaded', () => {
+    htmlGenerator(itemsList);
+
+    const cart = document.getElementById('cart');
 
     cart.addEventListener('dragover', e => {
         e.preventDefault();
@@ -223,17 +226,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     cart.addEventListener('drop', e => {
-        console.log("DRAG");
         e.preventDefault();
         cart.classList.remove('drag-over');
 
         const draggable = document.querySelector('.is-dragging');
-        const itemName = draggable.getAttribute('data-item');
+        const itemName = draggable.getAttribute('data-name');
+        const itemPrice = draggable.getAttribute('data-price');
         const itemElement = document.createElement('div');
         itemElement.className = 'card';
         itemElement.innerHTML = `
                 <div class="card-content">
                     <p class="title">${itemName}</p>
+                    <p class="content">${itemPrice}</p>
                 </div>
             `;
         cart.appendChild(itemElement);
@@ -295,6 +299,8 @@ const createProduct = () => {
     itemsList.push(newProduct);
     htmlGenerator(itemsList);
 
+
+
     document.getElementById("name").value = '';
     document.getElementById("description").value = '';
     document.getElementById("image").value = '';
@@ -305,7 +311,6 @@ const createProduct = () => {
 }
 
 const modalBody = (productId) => {
-    console.log(productId);
     const item = itemsList.find(item => item.id === parseInt(productId));
     const modalTitle = document.getElementById("ModalTitle");
     const modalDescription = document.getElementById("ModalDescription");
@@ -331,7 +336,7 @@ orderProducts.addEventListener("change", () => {
 
 save.addEventListener("click", createProduct);
 
-document.getElementById('categorySelect').addEventListener('change', function() {
+document.getElementById('categorySelect').addEventListener('change', function () {
     const selectedCategory = this.value;
     filterProductsByCategory(selectedCategory);
 });
