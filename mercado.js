@@ -1,109 +1,38 @@
 const itemsList = [
-    {
-        "id": 1,
-        "name": "Wireless Mouse",
-        "description": "Ergonomic wireless mouse with adjustable DPI.",
-        "price": 29.99,
-        "image": "https://i.pinimg.com/236x/87/dc/ea/87dcea109979f249209f3a120d6984ec.jpg",
-        "category": "Accesorios"
+    {   
+      id: "1",
+      title: "Task 1",
+      description: "Description for Task 1",
+      assignedTo: "Rodrigo Lujambio",
+      startDate: "01/01/2024",
+      endDate: "31/12/2024",
+      status: "To Do",
+      priority: "Low",
+      comments: [],
     },
     {
-        "id": 2,
-        "name": "Mechanical Keyboard",
-        "description": "RGB backlit mechanical keyboard with Cherry MX switches.",
-        "price": 89.99,
-        "image": "https://i.pinimg.com/564x/28/9f/ac/289facd557b0fb9e7556897b382f305f.jpg",
-        "category": "Accesorios"
+      id: "2",
+      title: "Task 2",
+      description: "Description for Task 2",
+      assignedTo: "Michel Sampil",
+      startDate: "01/01/2024",
+      endDate: "31/12/2024",
+      status: "In Progress",
+      priority: "Medium",
+      comments: [],
     },
     {
-        "id": 3,
-        "name": "Gaming Headset",
-        "description": "Surround sound gaming headset with noise-cancelling microphone.",
-        "price": 59.99,
-        "image": "https://i.pinimg.com/564x/7d/59/00/7d5900385c72bc40dab651aea7f83694.jpg",
-        "category": "Audio"
+      id: "3",
+      title: "Task 3",
+      description: "Description for Task 3",
+      assignedTo: "Jose Abadie",
+      startDate: "01/01/2024",
+      endDate: "31/12/2024",
+      status: "Done",
+      priority: "High",
+      comments: [],
     },
-    {
-        "id": 4,
-        "name": "27-inch Monitor",
-        "description": "4K UHD monitor with IPS display and 144Hz refresh rate.",
-        "price": 329.99,
-        "image": "https://i.pinimg.com/564x/83/84/b6/8384b623467eb5e910b48fa56b2b9023.jpg",
-        "category": "Electrónica"
-    },
-    {
-        "id": 5,
-        "name": "Laptop Stand",
-        "description": "Adjustable aluminum laptop stand for ergonomic work setup.",
-        "price": 39.99,
-        "image": "https://i.pinimg.com/236x/82/c4/38/82c43821cb4972cd8b7c46dda9239947.jpg",
-        "category": "Accesorios"
-    },
-    {
-        "id": 6,
-        "name": "USB-C Hub",
-        "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
-        "price": 24.99,
-        "image": "https://i.pinimg.com/564x/dc/24/82/dc248278bafc6b418aae0cc26b66c279.jpg",
-        "category": "Accesorios"
-    },
-    {
-        "id": 7,
-        "name": "External SSD",
-        "description": "Portable external SSD with 1TB storage and USB 3.1 interface.",
-        "price": 129.99,
-        "image": "https://i.pinimg.com/564x/6d/23/e0/6d23e0624f57ccb993d15a08fefb8171.jpg",
-        "category": "Almacenamiento"
-    },
-    {
-        "id": 8,
-        "name": "Smartphone Stand",
-        "description": "Adjustable smartphone stand with 360-degree rotation.",
-        "price": 19.99,
-        "image": "https://i.pinimg.com/564x/78/2a/32/782a32af5cca3823ad5adedc789596a1.jpg",
-        "category": "Accesorios"
-    },
-    {
-        "id": 9,
-        "name": "Bluetooth Speaker",
-        "description": "Portable Bluetooth speaker with 10-hour battery life.",
-        "price": 49.99,
-        "image": "https://i.pinimg.com/564x/7c/bc/fa/7cbcfa9c4131300069e502776b3827a6.jpg",
-        "category": "Audio"
-    },
-    {
-        "id": 10,
-        "name": "Webcam",
-        "description": "1080p HD webcam with built-in microphone and privacy cover.",
-        "price": 34.99,
-        "image": "https://i.pinimg.com/564x/9a/b3/8f/9ab38f44fe36b04c6b3e39dd953328e5.jpg",
-        "category": "Accesorios"
-    },
-    {
-        "id": 11,
-        "name": "Wireless Charger",
-        "description": "Fast wireless charger with Qi compatibility.",
-        "price": 25.99,
-        "image": "https://i.pinimg.com/564x/58/2b/12/582b126c7f65bfbb332d6b7ac3a4c43f.jpg",
-        "category": "Accesorios"
-    },
-    {
-        "id": 12,
-        "name": "Noise-Cancelling Headphones",
-        "description": "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
-        "price": 199.99,
-        "image": "https://i.pinimg.com/564x/24/e8/e9/24e8e9b5f4ee0fd7b9963cbbf272aabf.jpg",
-        "category": "Audio"
-    },
-    {
-        "id": 13,
-        "name": "Smartwatch",
-        "description": "Smartwatch with heart rate monitor and GPS.",
-        "price": 149.99,
-        "image": "https://i.pinimg.com/564x/85/98/86/859886f1b592da2009ba18ba280ad972.jpg",
-        "category": "Electrónica"
-    }
-]
+  ]; 
 
 let htmlGenerator = (arrayItems) => {
 
@@ -112,11 +41,11 @@ let htmlGenerator = (arrayItems) => {
     arrayItems.forEach((item, index) => {
 
         let variable = `
-<div id="${item.id}" class="card column is-full-mobile is-one-quarter-desktop draggable alignProduct" draggable="true" data-name="${item.name}" data-price="${item.price}">
+<div id="${item.title}" class="card column is-full-mobile is-one-quarter-desktop draggable alignProduct" draggable="true" data-name="${item.description}" data-price="${item.status}">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
-          src="${item.image}"
+          src="${item.priority}"
           alt="Placeholder image"
         />
       </figure>
@@ -124,11 +53,11 @@ let htmlGenerator = (arrayItems) => {
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">${item.name}</p>
+          <p class="title is-4">${item.assignedTo}</p>
         </div>
       </div>
       <div class="content">
-        ${item.description} ${item.price}
+        ${item.description} ${item.comments}
       </div>
     </div>
   </div>
@@ -181,10 +110,7 @@ let htmlGenerator = (arrayItems) => {
             draggable.classList.remove('is-dragging');
         });
     });
-
-
 }
-
 
 // MODAL FUNCTIONS
 function openModal($el) {
@@ -201,11 +127,9 @@ function closeAllModals() {
     });
 }
 
-
 const noProductsFound = () => {
     const noProducts = document.getElementById("noProducts");
     const products = document.getElementById("products");
-
     products.classList.add("hidden");
     noProducts.classList.add("is-flex");
 }
@@ -228,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cart.addEventListener('drop', e => {
         e.preventDefault();
         cart.classList.remove('drag-over');
-
         const draggable = document.querySelector('.is-dragging');
         const itemName = draggable.getAttribute('data-name');
         const itemPrice = draggable.getAttribute('data-price');
@@ -243,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cart.appendChild(itemElement);
     });
 });
-
 
 let filterByName = (text) => {
     const products = document.getElementById("products");
@@ -266,7 +188,6 @@ let filterByName = (text) => {
     }
 };
 
-
 const orderByPrice = (order) => {
     let auxList = [...itemsList];
     switch (order) {
@@ -282,24 +203,26 @@ const orderByPrice = (order) => {
 };
 
 const createProduct = () => {
-    let name = document.getElementById("name").value;
+    //let name = document.getElementById("name").value;
     let description = document.getElementById("description").value;
-    let image = document.getElementById("image").value;
-    let price = document.getElementById("price").value;
-    let category = document.getElementById("category").value;
+    //let image = document.getElementById("image").value;
+    let title = document.getElementById("image").value;
+    //let price = document.getElementById("price").value;
+    let assignedTo = document.getElementById("price").value;
+    //let category = document.getElementById("category").value;
+    let priority = document.getElementById("category").value;
 
     let newProduct = {
         id: itemsList.length + 1,
-        name: name,
+        title:title,
         description: description,
-        image: image,
-        price: price,
-        category: category
-    }
+        assignedTo:assignedTo,
+        startDate:startDate,
+        endDate:endDate,
+        priority:priority
+        }
     itemsList.push(newProduct);
     htmlGenerator(itemsList);
-
-
 
     document.getElementById("name").value = '';
     document.getElementById("description").value = '';
@@ -314,11 +237,11 @@ const modalBody = (productId) => {
     const item = itemsList.find(item => item.id === parseInt(productId));
     const modalTitle = document.getElementById("ModalTitle");
     const modalDescription = document.getElementById("ModalDescription");
-    const modalImage = document.getElementById("modalImage");
+    //const modalImage = document.getElementById("modalImage");
 
-    modalTitle.innerHTML = item.name;
-    modalDescription.innerHTML = item.description + " " + item.price;
-    modalImage.src = item.image;
+    modalTitle.innerHTML = item.title;
+    modalDescription.innerHTML = item.description //+ " " + item.price;
+    //modalImage.src = item.image;
     document.getElementById("modal-js-example").classList.add('is-active');
 }
 
@@ -334,7 +257,9 @@ orderProducts.addEventListener("change", () => {
     orderByPrice(orderProducts.value);
 });
 
-save.addEventListener("click", createProduct);
+//save.addEventListener("click", createProduct);
+
+save.addEventListener("click", MetodoPOST);
 
 document.getElementById('categorySelect').addEventListener('change', function () {
     const selectedCategory = this.value;
@@ -350,3 +275,76 @@ function filterProductsByCategory(category) {
     }
     htmlGenerator(filteredItems);
 }
+
+const getTasks = async () => {
+    try {
+        const response = await fetch("http://localhost:3000/api/tasks");
+        console.log(response)
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+        }
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+getTasks()
+/*
+const MetodoPUT= async(tareaModificada)=>{
+        const response= await fetch("http://localhost:3000/api/tasks/" + tareaModificada.id,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({
+                title: tareaModificada.title,
+                description: "Description for Task 2",
+                assignedTo: "Michel Sampil",
+                startDate: "01/01/2024",
+                endDate: "31/12/2024",
+                status: "In Progress",
+                priority: "Medium",
+                comments: [],
+            })
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log('Success;',data);
+        })
+        .catch((error)=>{
+            console.error('Error:',error);
+        });
+}
+*/
+
+const MetodoPOST= async()=>{
+    const loco =await fetch('https://api.example.com/endpoint', {
+        method: 'POST', // Especifica que es una petición POST
+        headers: {
+        'Content-Type': 'application/json', // Tipo de contenido, en este caso JSON
+        },
+        body: JSON.stringify({
+        id: 'John Doe',  // Datos que se envían en la petición
+        title: 'john.doe@example.com',
+        description:'Hola como estas',
+        assignedTo:'Nacho',
+        status:'In progress'
+        }), // Convierte los datos a formato JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Error en la petición');
+        }
+        return response.json(); // Procesa la respuesta como JSON
+    })
+    .then(data => {
+        console.log('Success:', data); // Maneja la respuesta exitosa
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Maneja cualquier error
+    });
+}    
+
+MetodoPOST();
